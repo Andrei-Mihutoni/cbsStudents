@@ -19,16 +19,14 @@ const SignupScreen = ({ navigation }) => {
         let tokenFromSecureStore = await SecureStore.getItemAsync('token');
         if (emailFromSecureStore && tokenFromSecureStore) {
             console.log("success", emailFromSecureStore);
-
             dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
-
         } else {
             console.log("failure");
         }
     }
     // read from secure store
     useEffect(() => {
-        load(); // comment out in order to work in browser 
+        // load(); // comment out in order to work in browser 
     }, [])
 
 
