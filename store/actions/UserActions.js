@@ -65,8 +65,8 @@ export const login = (email, password) => {
         if (!response.ok) {
             console.log("there was a problem with the login")
         } else {
-            // await SecureStore.setItemAsync('email', data.email); // comment out to work in browser
-            // await SecureStore.setItemAsync('token', data.idToken);  // comment out to work in browser
+            await SecureStore.setItemAsync('email', data.email); // comment out to work in browser
+            await SecureStore.setItemAsync('token', data.idToken);  // comment out to work in browser
             dispatch({ type: LOGIN, payload: { email: data.email, idToken: data.idToken } })
         }
     };
