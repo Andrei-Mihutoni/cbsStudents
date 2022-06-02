@@ -1,6 +1,6 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text } from 'react-native';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { View, Text } from "react-native";
 import Screen1 from "./../screens/Screen1";
 import Screen2 from "./../screens/Screen2";
 import Screen3 from "./../screens/Screen3";
@@ -11,58 +11,91 @@ import SignupScreen from "./../screens/SignupScreen";
 import LoginScreen from "./../screens/LoginScreen";
 import ProfileScreen from "./../screens/ProfileScreen";
 import EditProfileScreen from "./../screens/EditProfileScreen";
-import { NavigationContainer } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
-
+import { NavigationContainer } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-
 const NavigationComponent = ({ navigation }) => {
-    const token = useSelector(state => state.user.idToken)
+  const token = useSelector((state) => state.user.idToken);
 
-    return (
-        <NavigationContainer >
-            {token !== undefined ? (
-                // Show the app with all navigation
-                <Tab.Navigator>
-                    <Tab.Screen name="Home" component={HomeScreen} />
-                    <Tab.Screen name="Discover" component={DiscoverScreen} />
-                    <Tab.Screen name="Chat" component={ChatStack} />
-                    <Tab.Screen name="Menu" component={MenuStack} />
-                </Tab.Navigator>
-            ) : (
-                // show a stack navigator with only signup and login screens.
-                <Stack.Navigator>
-                    <Stack.Screen name="Signup" component={SignupScreen} />
-                    <Stack.Screen name="Login" component={LoginScreen} />
-                </Stack.Navigator>
-            )}
-        </NavigationContainer >
-    );
-}
+  //   return (
+  //     <NavigationContainer>
+  //       {token !== undefined ? (
+  //         // Show the app with all navigation
+  //         <Tab.Navigator>
+  //           <Tab.Screen name="Home" component={HomeScreen} />
+  //           <Tab.Screen name="Discover" component={DiscoverScreen} />
+  //           <Tab.Screen name="Chat" component={ChatStack} />
+  //           <Tab.Screen name="Menu" component={MenuStack} />
+  //         </Tab.Navigator>
+  //       ) : (
+  //         // show a stack navigator with only signup and login screens.
+  //         <Stack.Navigator>
+  //           <Stack.Screen name="Signup" component={SignupScreen} />
+  //           <Stack.Screen name="Login" component={LoginScreen} />
+  //         </Stack.Navigator>
+  //       )}
+  //     </NavigationContainer>
+  //   );
+  // };
 
+  return (
+    <NavigationContainer>
+      {token !== undefined ? (
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+              if (route.name === "Home") {
+                iconName = focused ? "ios-home" : "ios-home";
+              } else if (route.name === "Discover") {
+                iconName = focused ? "compass" : "compass";
+              } else if (route.name === "Chat") {
+                iconName = focused ? "chatbubbles" : "chatbubbles";
+              } else if (route.name === "Menu") {
+                iconName = focused ? "person" : "person";
+              }
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: "#434087",
+            tabBarInactiveTintColor: "#726fb0",
+          })}
+        >
+          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Discover" component={DiscoverScreen} />
+          <Tab.Screen name="Chat" component={ChatStack} />
+          <Tab.Screen name="Menu" component={MenuStack} />
+        </Tab.Navigator>
+      ) : (
+        <Stack.Navigator>
+          <Stack.Screen name="Signup" component={SignupScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
+        </Stack.Navigator>
+      )}
+    </NavigationContainer>
+  );
+};
 
 function MenuStack() {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name="Profile" component={ProfileScreen}></Stack.Screen>
-            <Stack.Screen name="EditProfile" component={EditProfileScreen}></Stack.Screen>
-        </Stack.Navigator>
-    )
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Profile" component={ProfileScreen}></Stack.Screen>
+      <Stack.Screen name="EditProfile" component={EditProfileScreen}></Stack.Screen>
+    </Stack.Navigator>
+  );
 }
 
 function ChatStack() {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name="Screen1" component={Screen1} />
-            <Stack.Screen name="Screen2" component={Screen2} />
-            <Stack.Screen name="AndreScreen" component={Screen3} />
-        </Stack.Navigator>
-    );
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Screen1" component={Screen1} />
+      <Stack.Screen name="Screen2" component={Screen2} />
+      <Stack.Screen name="Screen3" component={Screen3} />
+    </Stack.Navigator>
+  );
 }
-
-
 
 export default NavigationComponent;

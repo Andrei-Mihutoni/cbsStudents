@@ -3,7 +3,8 @@ import { Image } from "react-native-elements";
 import { Card } from "react-native-shadow-cards";
 
 const yogaImage = { uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTAXKkCL9wT0vag2vpfBc4ou9ng6-xu8ZjNQ&usqp=CAU" };
-const ghostImage = { uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb6z6cw6lEJLQO-b3xuB-9HLqgRK0ZwPkjYQ&usqp=CAU" };
+const ghostImage = { uri: "https://cinemafromthespectrum.files.wordpress.com/2017/02/rehost2f20162f92f132f6dff0cc3-1320-44ee-afe5-64e494974ae4.jpg" };
+const eventsImage = { uri: "https://media-exp1.licdn.com/dms/image/C561BAQE-51J-8KkMZg/company-background_10000/0/1548357920228?e=2147483647&v=beta&t=wrOVYN8qrGon9jILrMQv78FsyOV4IMQxr_3UjYtUREI" };
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -23,6 +24,13 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.section}>
+        <ImageBackground source={eventsImage} resizeMode="cover" style={styles.image}>
+          <Text style={styles.text}>CBS Film: Ghost Wold</Text>
+          <Text style={styles.spacer}></Text>
+        </ImageBackground>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.section}>
         <Text style={styles.text}>ALL EVENTS</Text>
       </TouchableOpacity>
     </View>
@@ -32,7 +40,6 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    borderRadius: 10,
   },
   image: {
     // opacity: 0.3,
@@ -44,6 +51,7 @@ const styles = StyleSheet.create({
   spacer: {
     width: 300,
   },
+
   section: {
     margin: 15,
     width: 300,
@@ -54,8 +62,8 @@ const styles = StyleSheet.create({
   },
   text: {
     opacity: 1,
-    color: "black",
-    fontSize: 20,
+    color: "white",
+    fontSize: 22,
     fontWeight: "bold",
   },
 });
