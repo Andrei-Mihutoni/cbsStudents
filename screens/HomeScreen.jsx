@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    // opacity: 0.3,
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
