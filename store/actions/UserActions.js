@@ -32,8 +32,6 @@ export const signup = (email, password) => {
       }),
     });
 
-    // console.log(await response.json());
-
     const data = await response.json(); // json to javascript
     console.log(data);
     if (!response.ok) {

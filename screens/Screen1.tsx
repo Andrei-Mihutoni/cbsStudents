@@ -10,15 +10,15 @@ const Screen1 = ({ navigation }: { navigation: any }) => {
   const [text, onChangeText] = useState("");
 
   const dispatch = useDispatch();
-  const chatrooms = useSelector((state: RootState) => state.chat.chatrooms);
-  // const isHappy = useSelector((state: RootState) => state.chat.isHappy); // subscribing to the store's chat slice/part
+  const chatrooms = useSelector((state: RootState) => state.chat.chatrooms); // subscribing to the store's chat part
+  // const isHappy = useSelector((state: RootState) => state.chat.isHappy);
   // const numberOfIcecreams = useSelector((state: RootState) => state.chat.counter);
 
   useEffect(() => {
     dispatch(fetchChatrooms());
   }, []);
 
-  console.log("chatrooms", chatrooms);
+  // console.log("chatrooms", chatrooms);
 
   const renderItem = ({ item }: { item: any }) => (
     <TouchableOpacity style={styles.ActiveChats}>
@@ -34,7 +34,6 @@ const Screen1 = ({ navigation }: { navigation: any }) => {
   return (
     <View>
       <RaisedButton title="Go to screen 1" onPress={() => navigation.navigate("Screen2")} />
-
       <Text style={styles.AddChatsTitle}>Add a new chatrooms</Text>
       <View style={styles.Container}>
         <TextInput placeholder="Chatroom name" style={styles.input} onChangeText={onChangeText} value={text} />
