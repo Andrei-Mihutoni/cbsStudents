@@ -29,10 +29,6 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.spacer}></Text>
         </ImageBackground>
       </TouchableOpacity>
-
-      <TouchableOpacity style={styles.section}>
-        <Text style={styles.text}>ALL EVENTS</Text>
-      </TouchableOpacity>
     </View>
   );
 };
